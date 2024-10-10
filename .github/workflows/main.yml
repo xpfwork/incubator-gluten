@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: apache/gluten:gluten-vcpkg-builder_2024_08_05
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Build Gluten velox third party
         run: |
           yum install sudo patch java-1.8.0-openjdk-devel -y && \
@@ -55,13 +55,13 @@ jobs:
           ./dev/builddeps-veloxbe.sh --enable_vcpkg=ON --build_tests=OFF  --build_benchmarks=OFF --enable_s3=OFF \
           --enable_gcs=OFF --enable_hdfs=ON --enable_abfs=OFF
       - name: Upload native libs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           path: ./cpp/build/releases/
           name: velox-native-lib-${{github.sha}}
           retention-days: 1
       - name: Upload Artifact Arrow Jar
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           path: /root/.m2/repository/org/apache/arrow/
           name: velox-arrow-jar-centos-7-${{github.sha}}
@@ -72,14 +72,14 @@ jobs:
     runs-on: ubuntu-20.04
     container: ${{ github.event.inputs.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Download All Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: velox-native-lib-${{github.sha}}
           path: ./cpp/build/releases
       - name: Download All Arrow Jar Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: velox-arrow-jar-centos-7-${{github.sha}}
           path: /root/.m2/repository/org/apache/arrow/
@@ -93,7 +93,7 @@ jobs:
           cd $GITHUB_WORKSPACE/ && \
           mvn clean install -Piceberg -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
       - name: Upload bundle package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: gluten-velox-bundle-package
           path: package/target/gluten-velox-bundle-*.jar
@@ -105,14 +105,14 @@ jobs:
     runs-on: ubuntu-20.04
     container: ${{ github.event.inputs.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Download All Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: velox-native-lib-${{github.sha}}
           path: ./cpp/build/releases
       - name: Download All Arrow Jar Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: velox-arrow-jar-centos-7-${{github.sha}}
           path: /root/.m2/repository/org/apache/arrow/
@@ -129,7 +129,7 @@ jobs:
           export PATH=${PATH}:${MAVEN_HOME}/bin && \
           mvn clean install -Piceberg -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
       - name: Upload bundle package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: gluten-velox-bundle-package
           path: package/target/gluten-velox-bundle-*.jar
@@ -141,14 +141,14 @@ jobs:
     runs-on: ubuntu-20.04
     container: ${{ github.event.inputs.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Download All Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: velox-native-lib-${{github.sha}}
           path: ./cpp/build/releases
       - name: Download All Arrow Jar Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: velox-arrow-jar-centos-7-${{github.sha}}
           path: /root/.m2/repository/org/apache/arrow/
@@ -169,7 +169,7 @@ jobs:
           export PATH=${PATH}:${MAVEN_HOME}/bin && \
           mvn clean install -Piceberg -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
       - name: Upload bundle package
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: gluten-velox-bundle-package
           path: package/target/gluten-velox-bundle-*.jar
