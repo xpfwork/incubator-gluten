@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: apache/gluten:gluten-vcpkg-builder_2024_08_05
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build Gluten velox third party
         run: |
           yum install sudo patch java-1.8.0-openjdk-devel -y && \
@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: ${{ github.event.inputs.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -105,7 +105,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: ${{ github.event.inputs.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
         with:
@@ -141,7 +141,7 @@ jobs:
     runs-on: ubuntu-20.04
     container: ${{ github.event.inputs.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
         with:
