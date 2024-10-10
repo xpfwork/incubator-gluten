@@ -91,7 +91,7 @@ jobs:
       - name: Build for Spark ${{ github.event.inputs.spark }}
         run: |
           cd $GITHUB_WORKSPACE/ && \
-          mvn clean install -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
+          mvn clean install -Piceberg -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
       - name: Upload bundle package
         uses: actions/upload-artifact@v4
         with:
@@ -127,7 +127,7 @@ jobs:
           cd $GITHUB_WORKSPACE/ && \
           export MAVEN_HOME=/usr/lib/maven && \
           export PATH=${PATH}:${MAVEN_HOME}/bin && \
-          mvn clean install -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
+          mvn clean install -Piceberg -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
       - name: Upload bundle package
         uses: actions/upload-artifact@v4
         with:
@@ -167,7 +167,7 @@ jobs:
           cd $GITHUB_WORKSPACE/ && \
           export MAVEN_HOME=/usr/lib/maven && \
           export PATH=${PATH}:${MAVEN_HOME}/bin && \
-          mvn clean install -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
+          mvn clean install -Piceberg -P${{ github.event.inputs.spark }} -Dhadoop.version=${{ github.event.inputs.hadoop }} -Pbackends-velox -Pceleborn -DskipTests -Dmaven.source.skip
       - name: Upload bundle package
         uses: actions/upload-artifact@v4
         with:
