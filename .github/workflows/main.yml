@@ -118,6 +118,8 @@ jobs:
           path: /root/.m2/repository/org/apache/arrow/
       - name: Setup java and maven
         run: |
+          wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo && \
+          yum clean all && yum makecache && \
           yum update -y && yum install -y java-1.8.0-openjdk-devel wget && \
           wget https://downloads.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz && \
           tar -xvf apache-maven-3.8.8-bin.tar.gz && \
